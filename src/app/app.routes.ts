@@ -3,6 +3,7 @@ import { Login } from './pages/login/login';
 import { Signup } from './pages/signup/signup';
 import { Employees } from './pages/employees/employees';
 import { AddEmployee } from './pages/add-employee/add-employee';
+import { UpdateEmployee } from './pages/update-employee/update-employee';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -10,4 +11,5 @@ export const routes: Routes = [
   { path: 'signup', component: Signup },
   { path: 'employees', component: Employees },
   { path: 'add-employee', component: AddEmployee },
+  { path: 'update-employee/:id', component: UpdateEmployee },
 ];

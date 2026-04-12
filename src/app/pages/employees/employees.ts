@@ -15,6 +15,13 @@ const GET_EMPLOYEES = gql`
     }
   }
 `;
+const DELETE_EMPLOYEE = gql`
+  mutation DeleteEmployee($id: ID!) {
+    deleteEmployeeById(id: $id) {
+      _id
+    }
+  }
+`;
 
 @Component({
   selector: 'app-employees',
@@ -47,5 +54,25 @@ export class Employees implements OnInit {
           console.error('GRAPHQL ERROR:', err);
         },
       });
+  }
+
+  deleteEmployee(id: string) {
+    const confirmed = confirm('Are you sure you want to delete this employee?');
+
+    if (confirmed) {
+      this.apollo.mutate<any>({
+        mutation: DELETE_EMPLOYEE,
+        variables: { id },
+      }).subscribe({
+        next: () => {
+          alert('Employee deleted successfully');
+          this.employees = this.employees.filter(emp => emp._id !== id);
+        },
+        error: (err) => {
+          console.error('DELETE ERROR:', err);
+          alert('Delete failed');
+        }
+      });
+    }
   }
 }

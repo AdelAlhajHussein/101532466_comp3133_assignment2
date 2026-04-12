@@ -1,1 +1,50 @@
-<p>update-employee works!</p>
+<h2>Update Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>First Name:</label>
+    <input type="text" formControlName="first_name" />
+  </div>
+
+  <div>
+    <label>Last Name:</label>
+    <input type="text" formControlName="last_name" />
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+  </div>
+
+  <div>
+    <label>Gender:</label>
+    <input type="text" formControlName="gender" />
+  </div>
+
+  <div>
+    <label>Designation:</label>
+    <input type="text" formControlName="designation" />
+  </div>
+
+  <div>
+    <label>Salary:</label>
+    <input type="number" formControlName="salary" />
+  </div>
+
+  <div>
+    <label>Date of Joining:</label>
+    <input type="date" formControlName="date_of_joining" />
+  </div>
+
+  <div>
+    <label>Department:</label>
+    <input type="text" formControlName="department" />
+  </div>
+
+  <div>
+    <label>Employee Photo URL:</label>
+    <input type="text" formControlName="employee_photo" />
+  </div>
+
+  <button type="submit">Update Employee</button>
+</form>
