@@ -1,1 +1,74 @@
-<p>add-employee works!</p>
+<h2>Add Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>First Name:</label>
+    <input type="text" formControlName="first_name" />
+    <div *ngIf="employeeForm.get('first_name')?.touched && employeeForm.get('first_name')?.invalid">
+      First name is required
+    </div>
+  </div>
+
+  <div>
+    <label>Last Name:</label>
+    <input type="text" formControlName="last_name" />
+    <div *ngIf="employeeForm.get('last_name')?.touched && employeeForm.get('last_name')?.invalid">
+      Last name is required
+    </div>
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+    <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid">
+      Valid email is required
+    </div>
+  </div>
+
+  <div>
+    <label>Gender:</label>
+    <input type="text" formControlName="gender" />
+    <div *ngIf="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid">
+      Gender is required
+    </div>
+  </div>
+
+  <div>
+    <label>Designation:</label>
+    <input type="text" formControlName="designation" />
+    <div *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">
+      Designation is required
+    </div>
+  </div>
+
+  <div>
+    <label>Salary:</label>
+    <input type="number" formControlName="salary" />
+    <div *ngIf="employeeForm.get('salary')?.touched && employeeForm.get('salary')?.invalid">
+      Salary is required
+    </div>
+  </div>
+
+  <div>
+    <label>Date of Joining:</label>
+    <input type="date" formControlName="date_of_joining" />
+    <div *ngIf="employeeForm.get('date_of_joining')?.touched && employeeForm.get('date_of_joining')?.invalid">
+      Date of joining is required
+    </div>
+  </div>
+
+  <div>
+    <label>Department:</label>
+    <input type="text" formControlName="department" />
+    <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid">
+      Department is required
+    </div>
+  </div>
+
+  <div>
+    <label>Employee Photo URL:</label>
+    <input type="text" formControlName="employee_photo" />
+  </div>
+
+  <button type="submit">Add Employee</button>
+</form>

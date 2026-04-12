@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 const GET_EMPLOYEES = gql`
   query {
@@ -18,7 +19,7 @@ const GET_EMPLOYEES = gql`
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './employees.html',
   styleUrl: './employees.css',
 })
