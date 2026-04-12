@@ -11,6 +11,7 @@
 <button (click)="getEmployees()">Reset</button>
 
 <button routerLink="/add-employee">Add Employee</button>
+
 <table border="1" *ngIf="employees.length > 0">
   <tr>
     <th>Name</th>
@@ -26,6 +27,7 @@
     <td>{{ emp.designation }}</td>
     <td>{{ emp.department }}</td>
     <td>
+      <button [routerLink]="['/view-employee', emp._id]">View</button>
       <button [routerLink]="['/update-employee', emp._id]">Edit</button>
       <button (click)="deleteEmployee(emp._id)">Delete</button>
     </td>

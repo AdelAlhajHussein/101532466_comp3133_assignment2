@@ -66,8 +66,8 @@
   </div>
 
   <div>
-    <label>Employee Photo URL:</label>
-    <input type="text" formControlName="employee_photo" />
+    <label>Upload Employee Photo:</label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
   </div>
 
   <button type="submit">Add Employee</button>

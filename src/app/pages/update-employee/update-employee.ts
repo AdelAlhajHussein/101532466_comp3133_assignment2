@@ -44,6 +44,7 @@ const UPDATE_EMPLOYEE = gql`
 export class UpdateEmployee implements OnInit {
   employeeForm;
   employeeId!: string;
+  selectedPhoto: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -85,6 +86,21 @@ export class UpdateEmployee implements OnInit {
         alert('Failed to load employee');
       }
     });
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.selectedPhoto = reader.result as string;
+      this.employeeForm.patchValue({
+        employee_photo: this.selectedPhoto
+      });
+    };
+    reader.readAsDataURL(file);
   }
 
   onSubmit() {

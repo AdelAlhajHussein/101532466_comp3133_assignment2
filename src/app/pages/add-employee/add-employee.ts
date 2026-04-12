@@ -13,6 +13,7 @@ const ADD_EMPLOYEE = gql`
       email
       designation
       department
+      employee_photo
     }
   }
 `;
@@ -26,6 +27,7 @@ const ADD_EMPLOYEE = gql`
 })
 export class AddEmployee {
   employeeForm;
+  selectedPhoto: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +45,26 @@ export class AddEmployee {
       department: ['', Validators.required],
       employee_photo: [''],
     });
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (file.size > 200000) {
+      alert('File too large. Please select an image under 200KB.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.selectedPhoto = reader.result as string;
+      this.employeeForm.patchValue({
+        employee_photo: this.selectedPhoto,
+      });
+    };
+    reader.readAsDataURL(file);
   }
 
   onSubmit() {
