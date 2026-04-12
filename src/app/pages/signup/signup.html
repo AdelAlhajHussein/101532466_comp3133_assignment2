@@ -1,2 +1,29 @@
 <h2>Signup</h2>
-<p>signup works!</p>
+
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Username:</label>
+    <input type="text" formControlName="username" />
+    <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid">
+      Username is required
+    </div>
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+    <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+      Enter a valid email
+    </div>
+  </div>
+
+  <div>
+    <label>Password:</label>
+    <input type="password" formControlName="password" />
+    <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+      Password must be at least 6 characters
+    </div>
+  </div>
+
+  <button type="submit">Signup</button>
+</form>
