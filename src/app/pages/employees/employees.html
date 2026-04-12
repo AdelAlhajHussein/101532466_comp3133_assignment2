@@ -1,4 +1,14 @@
 <h2>Employees</h2>
+<h3>Search Employees</h3>
+
+<input type="text" placeholder="Search by Designation"
+       [(ngModel)]="searchDesignation">
+
+<input type="text" placeholder="Search by Department"
+       [(ngModel)]="searchDepartment">
+
+<button (click)="searchEmployees()">Search</button>
+<button (click)="getEmployees()">Reset</button>
 
 <button routerLink="/add-employee">Add Employee</button>
 <table border="1" *ngIf="employees.length > 0">

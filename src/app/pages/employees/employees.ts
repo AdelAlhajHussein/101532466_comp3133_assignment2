@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 const GET_EMPLOYEES = gql`
   query {
@@ -23,15 +24,31 @@ const DELETE_EMPLOYEE = gql`
   }
 `;
 
+const SEARCH_EMPLOYEES = gql`
+  query SearchEmployees($designation: String, $department: String) {
+    searchEmployeesByFilter(designation: $designation, department: $department) {
+      _id
+      first_name
+      last_name
+      email
+      designation
+      department
+    }
+  }
+`;
+
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './employees.html',
   styleUrl: './employees.css',
 })
 export class Employees implements OnInit {
   employees: any[] = [];
+
+  searchDesignation: string = '';
+  searchDepartment: string = '';
 
   constructor(
     private apollo: Apollo,
@@ -74,5 +91,40 @@ export class Employees implements OnInit {
         }
       });
     }
+  }
+
+  searchEmployees() {
+    this.apollo.query<any>({
+      query: SEARCH_EMPLOYEES,
+      variables: {
+        designation: this.searchDesignation || null,
+        department: this.searchDepartment || null,
+      },
+      fetchPolicy: 'no-cache',
+    }).subscribe({
+      next: (result) => {
+        this.employees = [...(result.data.searchEmployeesByFilter || [])];
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('SEARCH ERROR:', err);
+        alert('Search failed');
+      }
+    });
+  }
+
+  getEmployees() {
+    this.apollo.query<any>({
+      query: GET_EMPLOYEES,
+      fetchPolicy: 'no-cache'
+    }).subscribe({
+      next: (result) => {
+        this.employees = result.data.getEmployees;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('FETCH ERROR:', err);
+      }
+    });
   }
 }
