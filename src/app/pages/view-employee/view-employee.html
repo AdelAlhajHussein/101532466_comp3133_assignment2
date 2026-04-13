@@ -1,21 +1,71 @@
-<h2>Employee Details</h2>
+<div class="container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4">Employee Details</h2>
 
-<p *ngIf="loading">Loading employee details...</p>
+    <p class="text-muted" *ngIf="loading">Loading employee details...</p>
 
-<div *ngIf="!loading && employee">
-  <p><strong>First Name:</strong> {{ employee.first_name }}</p>
-  <p><strong>Last Name:</strong> {{ employee.last_name }}</p>
-  <p><strong>Email:</strong> {{ employee.email }}</p>
-  <p><strong>Gender:</strong> {{ employee.gender }}</p>
-  <p><strong>Designation:</strong> {{ employee.designation }}</p>
-  <p><strong>Salary:</strong> {{ employee.salary }}</p>
-  <p><strong>Date of Joining:</strong> {{ employee.date_of_joining }}</p>
-  <p><strong>Department:</strong> {{ employee.department }}</p>
+    <div *ngIf="!loading && employee">
+      <div class="row">
+        <div class="col-md-4 text-center mb-4">
+          <div *ngIf="employee.employee_photo; else noPhoto">
+            <img
+              [src]="employee.employee_photo"
+              alt="Employee Photo"
+              class="img-fluid rounded shadow-sm"
+              style="max-height: 250px; object-fit: cover;"
+            />
+          </div>
 
-  <div *ngIf="employee.employee_photo">
-    <p><strong>Photo:</strong></p>
-    <img [src]="employee.employee_photo" alt="Employee Photo" width="150" />
+          <ng-template #noPhoto>
+            <div class="border rounded p-5 bg-light text-muted">
+              No Photo Available
+            </div>
+          </ng-template>
+        </div>
+
+        <div class="col-md-8">
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+              <th>First Name</th>
+              <td>{{ employee.first_name }}</td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td>{{ employee.last_name }}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{{ employee.email }}</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>{{ employee.gender }}</td>
+            </tr>
+            <tr>
+              <th>Designation</th>
+              <td>{{ employee.designation }}</td>
+            </tr>
+            <tr>
+              <th>Salary</th>
+              <td>{{ employee.salary }}</td>
+            </tr>
+            <tr>
+              <th>Date of Joining</th>
+              <td>{{ employee.date_of_joining }}</td>
+            </tr>
+            <tr>
+              <th>Department</th>
+              <td>{{ employee.department }}</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <a routerLink="/employees" class="btn btn-secondary mt-2">Back to Employees</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-danger" *ngIf="!loading && !employee">Employee not found.</p>
   </div>
 </div>
-
-<p *ngIf="!loading && !employee">Employee not found.</p>
