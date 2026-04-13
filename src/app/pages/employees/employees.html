@@ -1,37 +1,67 @@
-<h2>Employees</h2>
-<h3>Search Employees</h3>
+<div class="container mt-4">
+  <h2 class="mb-3">Employees</h2>
 
-<input type="text" placeholder="Search by Designation"
-       [(ngModel)]="searchDesignation">
+  <a routerLink="/add-employee" class="btn btn-primary mb-3">Add Employee</a>
 
-<input type="text" placeholder="Search by Department"
-       [(ngModel)]="searchDepartment">
+  <div class="card p-3 mb-3">
+    <h5 class="mb-3">Search Employees</h5>
 
-<button (click)="searchEmployees()">Search</button>
-<button (click)="getEmployees()">Reset</button>
+    <div class="row g-2">
+      <div class="col-md-4">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Search by Designation"
+          [(ngModel)]="searchDesignation"
+        />
+      </div>
 
-<button routerLink="/add-employee">Add Employee</button>
+      <div class="col-md-4">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Search by Department"
+          [(ngModel)]="searchDepartment"
+        />
+      </div>
 
-<table border="1" *ngIf="employees.length > 0">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Designation</th>
-    <th>Department</th>
-    <th>Actions</th>
-  </tr>
+      <div class="col-md-2">
+        <button class="btn btn-success w-100" (click)="searchEmployees()">Search</button>
+      </div>
 
-  <tr *ngFor="let emp of employees">
-    <td>{{ emp.first_name }} {{ emp.last_name }}</td>
-    <td>{{ emp.email }}</td>
-    <td>{{ emp.designation }}</td>
-    <td>{{ emp.department }}</td>
-    <td>
-      <button [routerLink]="['/view-employee', emp._id]">View</button>
-      <button [routerLink]="['/update-employee', emp._id]">Edit</button>
-      <button (click)="deleteEmployee(emp._id)">Delete</button>
-    </td>
-  </tr>
-</table>
+      <div class="col-md-2">
+        <button class="btn btn-secondary w-100" (click)="getEmployees()">Reset</button>
+      </div>
+    </div>
+  </div>
 
-<p *ngIf="employees.length === 0">No employees found.</p>
+  <div class="table-responsive" *ngIf="employees.length > 0">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.first_name }} {{ emp.last_name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.designation }}</td>
+        <td>{{ emp.department }}</td>
+        <td>
+          <button class="btn btn-info btn-sm me-2" [routerLink]="['/view-employee', emp._id]">View</button>
+          <button class="btn btn-warning btn-sm me-2" [routerLink]="['/update-employee', emp._id]">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEmployee(emp._id)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="text-muted" *ngIf="employees.length === 0">No employees found.</p>
+</div>

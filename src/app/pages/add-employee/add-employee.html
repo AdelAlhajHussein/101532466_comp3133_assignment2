@@ -1,74 +1,82 @@
-<h2>Add Employee</h2>
+<div class="container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4">Add Employee</h2>
 
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>First Name:</label>
-    <input type="text" formControlName="first_name" />
-    <div *ngIf="employeeForm.get('first_name')?.touched && employeeForm.get('first_name')?.invalid">
-      First name is required
-    </div>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">First Name</label>
+          <input class="form-control" type="text" formControlName="first_name" />
+          <div class="text-danger" *ngIf="employeeForm.get('first_name')?.touched && employeeForm.get('first_name')?.invalid">
+            First name is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Last Name</label>
+          <input class="form-control" type="text" formControlName="last_name" />
+          <div class="text-danger" *ngIf="employeeForm.get('last_name')?.touched && employeeForm.get('last_name')?.invalid">
+            Last name is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" formControlName="email" />
+          <div class="text-danger" *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid">
+            Valid email is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Gender</label>
+          <input class="form-control" type="text" formControlName="gender" />
+          <div class="text-danger" *ngIf="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid">
+            Gender is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Designation</label>
+          <input class="form-control" type="text" formControlName="designation" />
+          <div class="text-danger" *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">
+            Designation is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Salary</label>
+          <input class="form-control" type="number" formControlName="salary" />
+          <div class="text-danger" *ngIf="employeeForm.get('salary')?.touched && employeeForm.get('salary')?.invalid">
+            Salary is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Date of Joining</label>
+          <input class="form-control" type="date" formControlName="date_of_joining" />
+          <div class="text-danger" *ngIf="employeeForm.get('date_of_joining')?.touched && employeeForm.get('date_of_joining')?.invalid">
+            Date of joining is required
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Department</label>
+          <input class="form-control" type="text" formControlName="department" />
+          <div class="text-danger" *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid">
+            Department is required
+          </div>
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Upload Employee Photo</label>
+          <input class="form-control" type="file" (change)="onFileSelected($event)" accept="image/*" />
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary" type="submit">Add Employee</button>
+    </form>
   </div>
-
-  <div>
-    <label>Last Name:</label>
-    <input type="text" formControlName="last_name" />
-    <div *ngIf="employeeForm.get('last_name')?.touched && employeeForm.get('last_name')?.invalid">
-      Last name is required
-    </div>
-  </div>
-
-  <div>
-    <label>Email:</label>
-    <input type="email" formControlName="email" />
-    <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid">
-      Valid email is required
-    </div>
-  </div>
-
-  <div>
-    <label>Gender:</label>
-    <input type="text" formControlName="gender" />
-    <div *ngIf="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid">
-      Gender is required
-    </div>
-  </div>
-
-  <div>
-    <label>Designation:</label>
-    <input type="text" formControlName="designation" />
-    <div *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">
-      Designation is required
-    </div>
-  </div>
-
-  <div>
-    <label>Salary:</label>
-    <input type="number" formControlName="salary" />
-    <div *ngIf="employeeForm.get('salary')?.touched && employeeForm.get('salary')?.invalid">
-      Salary is required
-    </div>
-  </div>
-
-  <div>
-    <label>Date of Joining:</label>
-    <input type="date" formControlName="date_of_joining" />
-    <div *ngIf="employeeForm.get('date_of_joining')?.touched && employeeForm.get('date_of_joining')?.invalid">
-      Date of joining is required
-    </div>
-  </div>
-
-  <div>
-    <label>Department:</label>
-    <input type="text" formControlName="department" />
-    <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid">
-      Department is required
-    </div>
-  </div>
-
-  <div>
-    <label>Upload Employee Photo:</label>
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-  </div>
-
-  <button type="submit">Add Employee</button>
-</form>
+</div>
